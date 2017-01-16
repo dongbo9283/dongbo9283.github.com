@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pingbao</title>
+    <meta name="author" content="">
+    <meta name="copyright" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+        body{
+            background:url(pingbao/black.jpg);
+            background-position: 100% 100%;
+        }
+        #c1{
+           
+        }
+    </style>
+    <script>
+        function rnd(m,n){
+            return parseInt(m+Math.random()*(n-m));
+        }
+
+        document.addEventListener('DOMContentLoaded',function(){
+            var oC = document.querySelector('#c1');
+            var gd = oC.getContext('2d');
+            var winW = document.documentElement.clientWidth;
+            var winH = document.documentElement.clientHeight;
+            oC.width = winW;
+            oC.height = winH;
+            //5个点的数组
+            var N = 5;
+            var aPoint = [];
+            var LEN = 10;
+            //存放所有的尾巴
+            var oldArr = [];//[[{x,y,sx,sy},{x,y,sx,sy},{x,y,sx,sy}],[{x,y,sx,sy},{x,y,sx,sy},{x,y,sx,sy}],[{x,y,sx,sy},{x,y,sx,sy},{x,y,sx,sy}],[{x,y,sx,sy},{x,y,sx,sy},{x,y,sx,sy}],[{x,y,sx,sy},{x,y,sx,sy},{x,y,sx,sy}]]
+            
+            for(var i = 0;i<N;i++){
+                aPoint[i] = {
+                    x:rnd(0,winW),
+                    y:rnd(0,winH),
+                    iSpeedX:rnd(-10,10),
+                    iSpeedY:rnd(-10,10)
+                };
+            }
+            setInterval(function(){
+                gd.clearRect(0,0,oC.width,oC.height);
+                //画5个方块
+                for(var i = 0;i<aPoint.length;i++){
+                    aPoint[i].x+=aPoint[i].iSpeedX;
+                    aPoint[i].y+=aPoint[i].iSpeedY;
+                    if(aPoint[i].x<0){
+                        aPoint[i].x = 0;
+                        aPoint[i].iSpeedX*=-1;
+                    }
+                    if(aPoint[i].x>winW){
+                        aPoint[i].x = winW;
+                        aPoint[i].iSpeedX*=-1;
+                    }
+                    if(aPoint[i].y<0){
+                        aPoint[i].y = 0;
+                        aPoint[i].iSpeedY*=-1;
+                    }
+                    if(aPoint[i].y>winH){
+                        aPoint[i].y = winH;
+                        aPoint[i].iSpeedY*=-1;
+                    }
+                    drawPoint(aPoint[i]);
+                }
+                //连线
+                gd.beginPath();
+                gd.moveTo(aPoint[0].x,aPoint[0].y);
+                for(var i = 1;i<aPoint.length;i++){
+                    gd.lineTo(aPoint[i].x,aPoint[i].y);
+                }
+                gd.closePath();
+                gd.strokeStyle = '#fff';
+                gd.stroke();
+                
+                //画尾巴
+                //当前状态这个一个尾巴
+                var arr = [];
+                for(var i = 0;i<aPoint.length;i++){
+                    arr[i] = {
+                        x:aPoint[i].x,
+                        y:aPoint[i].y
+                    };
+                }
+                oldArr.push(arr);
+                if(oldArr.length>LEN){
+                    oldArr.shift();
+                }
+                gd.beginPath();
+                for(var i = 0;i<oldArr.length;i++){
+                    gd.moveTo(oldArr[i][0].x,oldArr[i][0].y);
+                    for(var j = 1;j<oldArr[i].length;j++){
+                        gd.lineTo(oldArr[i][j].x,oldArr[i][j].y);
+                    }
+                    gd.closePath();
+                    gd.strokeStyle = '#fff';
+                    gd.stroke();
+                }
+            },16);
+            
+            //画方块
+            function drawPoint(p){
+                var pW = 1;
+                var pH = 1;
+                gd.fillStyle = '#fff';
+                gd.fillRect(p.x-pW/2,p.y-pH/2,pW,pH);
+            }
+            
+        },false);
+    </script>
+</head>
+<body>
+    <canvas id="c1"></canvas>
+</body>
+</html>

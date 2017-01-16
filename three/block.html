@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="swiper.min.css">
+    <link rel="stylesheet" href="../css/animate.css" />
+    <!-- Demo styles -->
+    <style>
+    #yu{height: 480px;width: 233px;position: absolute;top:55px; left: 300px;}
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        background:url(block/8.jpg);
+         background-attachment:fixed;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/background.jpg', sizingMethod='scale');
+    -ms-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/background.jpg', sizingMethod='scale');
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        margin-left: -150px;
+        margin-top: -150px;
+    }
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+    }
+    .swiper-wrapper div:nth-child(1){ background:#FC3; }
+    .swiper-wrapper div:nth-child(2){ background:#399; }
+    .swiper-wrapper div:nth-child(3){ background:#6cf; }
+    .swiper-wrapper div:nth-child(4){ background:#0C9; }
+    .swiper-wrapper div:nth-child(5){ background:#f00; }
+    .swiper-wrapper div:nth-child(6){ background:#399; }
+    .swiper-wrapper div:nth-child(7){ background:#6cf; }
+    </style>
+</head>
+<body>
+    <img src="block/yuhang.png" alt="" id="yu" class="animated fadeInLeft">
+    <!-- Swiper -->
+    <div class="swiper-container animated fadeInRight">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background:url(block/1.jpg) no-repeat;"></div>
+            <div class="swiper-slide" style="background:url(block/2.jpg) no-repeat;"></div>
+            <div class="swiper-slide" style="background:url(block/3.jpg) no-repeat"></div>
+            <div class="swiper-slide" style="background:url(block/4.jpg) no-repeat"></div>
+            <div class="swiper-slide" style="background:url(block/5.jpg) no-repeat"></div>
+            <div class="swiper-slide" style="background:url(block/6.jpg) no-repeat"></div>
+            <div class="swiper-slide" style="background:url(block/7.jpg) no-repeat"></div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        effect: 'cube',
+        grabCursor: true,
+        cube: {
+            shadow: true,
+            slideShadows: true,
+            shadowOffset: 20,
+            shadowScale: 0.94
+        }
+    });
+    </script>
+</body>
+</html>

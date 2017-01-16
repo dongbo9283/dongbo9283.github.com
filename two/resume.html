@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" href="../css/animate.css" />
+	<link href="../css/swiper.min.css" rel="stylesheet" />
+	<style>
+	html{height: 100%;width: 100%;}
+	body{height: 100%;width: 100%;}
+	header{z-index: 1000;display: block;}
+	#logo{height: 80px;width: 80px;overflow: hidden;display: block;position: fixed;left: 0;top: 0; z-index: 1000;}
+	#logo img{width: 80px;height: 160px;transition:0.5s;}
+	#logo:hover img{transform:translateY(-80px);}
+	.nu1{width: 100%;height:900px; background: #f9f9f9; position: relative;}
+	.nu1 nav{height: 40px;width: 996px; border-bottom: 1px solid #666; position: absolute;left: 20%; top: 0; padding-top: 40px;}
+	.nu1 nav ul{overflow: hidden;padding-top: 20px}
+	.nu1 nav ul li{height: 40px;float: right;text-align: center; font-size: 20px;padding-right: 50px; padding-left: 50px; color: #666;}
+	}
+	.nu1 nav ul li:nth-child(2){padding-left: 0; padding-right: 0;height: 10px; width: 1px; background: #666; margin-top: 10px;}
+	#cloud{position: absolute;left: 50%; top: 20%}
+	.nu1_bottom{position: absolute;left: 0; bottom: 0; height: 150px; background: #000; width: 100%;text-align: center;padding-top: 50px;}
+	#tree{position: absolute;top:622px;left: 152px;}
+	#tree2{position: absolute;top:610px;right: 152px;}
+	#me{position: absolute;top: 60px; left: 100px;height: 139px;width: 139px;overflow: hidden;background: url(../images/me.png) no-repeat;border-radius: 50%; border: 1px solid #000}
+	#text1{position: absolute;top: 200px; left: 268px;}
+	#text2{height: 60px; width: 270px; position: absolute;left: 268px; top: 420px; font-size: 10px; color: #444444; line-height: 20px;}
+	.nu2{width: 100%;height:600px; background: #f9f9f9; position: relative;}
+	#hourse{height: 548px; width: 850px; overflow: hidden;position: absolute;left: 50px; top: 0;}
+	#mes{position: absolute; top: 10%; right: 10%;}
+	#xuan{position: absolute;bottom:10px; left: 50%; margin-left: -450px;}
+	.nu3{width: 100%;height:300px; background: #000; position: relative;}
+	#lifang{position: absolute;right: 10%; top: 0;}
+	#chuang{position: absolute;left:10%; top: 10px;}
+	.nu3 .xian{height: 1px;width: 38%; background:#f9f9f9;position: absolute;top: 50%; left: 30%; margin-top: -1px;}
+	.nu4{width: 100%;height:470px; background: #fdfdfd; position: relative;}
+	.swiper-container {width: 100%;padding-top: 20px;padding-bottom: 50px;background: #f9f9f9;}
+	.swiper-slide {background-position: center;background-size: cover;width: 600px;height:400px;}
+	footer{width: 100%;height:100px; background: #f9f9f9; position: relative;text-align: center;padding-top: 70px;}
+	</style>
+	<script src="../js/swiper.min.js"></script>
+	<script>
+	window.onload=function(){
+		var oMe=document.getElementById('me');
+		var oCl=document.getElementById('cloud');
+		var oIcon=document.getElementById('icon');
+		oIcon.onmouseenter=function(){
+			this.className='animated flash'
+		};
+		oIcon.onmouseleave=function(){
+			this.className=''
+		};
+		oCl.onmouseenter=function(){
+			this.className='animated jello'
+		};
+		oCl.onmouseleave=function(){
+			this.className=''
+		};
+		oMe.onmouseenter=function(){
+			this.className='animated bounceIn'
+		};
+		oMe.onmouseleave=function(){
+			this.className=''
+		};
+	}
+	</script>
+</head>
+<body>
+	<header>
+		<a href="../home/index.html" id="logo" class="animated bounce">
+			<img src="../images/logo1.png" alt="">
+		</a>
+	</header>
+	<section class="nu1">
+		<nav>
+			<ul>
+				<li class="animated fadeInDown"><a href="contant.html">CONTACT ME</a></li>
+				<li></li>
+				<li class="animated fadeInDown"><a href="show.html" target="_blank">MY WORKS</a></li>
+			</ul>
+		</nav>
+		<img src="../images/cloud.png" alt="" id="cloud" class="animated bounceInRight">
+		<img src="../images/tree.png" alt="" id="tree" class="animated bounceInUp">
+		<img src="../images/tree2.png" alt="" id="tree2" class="animated bounceInUp">
+		<div id="me" class="animated fadeInDown"></div>
+		<img src="../images/text.png" alt="" id="text1">
+		<p id="text2">HTML + CSS + JAVASCRIPT + PS + AI + AXURE + SAI.IT'S WHAT I LOVE TO DO.SO RELAX,I AM GOT THIS.</p>
+		<div class="nu1_bottom">
+			<img src="../images/icon.png" alt="" id="icon">
+		</div>
+	</section>
+	<section class="nu2">
+		<img src="../images/hourse.png" alt="" id="hourse" class="animated bounceInLeft">
+		<img src="../images/message.png" alt="" id="mes" class="animated bounceInRight">
+		<img src="../images/xuan.png" alt="" id="xuan" class="animated bounceInUp">
+	</section>
+	<section class="nu3">
+		<img src="../images/lifang.jpg" alt="" id="lifang">
+		<img src="../images/chuang.png" alt="" id="chuang">
+		<div class="xian"></div>
+	</section>
+	<section class="nu4">
+		<div class="swiper-container">
+    	<div class="swiper-wrapper">
+        	<div class="swiper-slide" style="background:url(../images/b1.png) no-repeat"></div>
+        	<div class="swiper-slide" style="background:url(../images/b2.png) no-repeat"></div>
+        	<div class="swiper-slide" style="background:url(../images/b3.png) no-repeat"></div>
+        	<div class="swiper-slide" style="background:url(../images/b4.png) no-repeat"></div>
+        	<div class="swiper-slide" style="background:url(../images/b5.png) no-repeat"></div>
+        	<div class="swiper-slide" style="background:url(../images/b6.png) no-repeat"></div>
+        	<div class="swiper-slide" style="background:url(../images/b7.png) no-repeat"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    	</div>
+    	<script>
+		var swiper = new Swiper('.swiper-container', {
+        	pagination: '.swiper-pagination',
+        	effect: 'coverflow',
+        	grabCursor: true,
+       		centeredSlides: true,
+        	slidesPerView: 'auto',
+        	coverflow: {
+            	rotate: 50,
+            	stretch: 0,
+            	depth: 100,
+            	modifier: 1,
+            	slideShadows : true
+        	}
+    	});
+		</script>
+	</section>
+	<footer>
+		<img src="../images/footer.png" alt="" id="over">
+	</footer>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	figure{width: 547px;height: 300px;margin: 0 auto}
+	*{padding: 0; margin: 0; list-style: none}
+	body{background:url(number/shan1.jpg) no-repeat;background-size: 100% 100%; }
+	#time{overflow: hidden; width: 580px;height: 300px; margin: 20px auto}
+	#time li{float: left}
+	.kong1{height: 100px;width: 30px;font-size: 50px; line-height: 100px}
+	.kong2{height: 100px;width: 32px;font-size: 50px; line-height: 100px}
+	#mei{position: fixed;bottom: 0; right: 0; height: 600px; width: 600px;}
+	</style>
+	<script>
+	function toDouble(n){
+		return n<10?'0'+n:''+n
+	}
+	window.onload=function(){
+		var oUl=document.getElementById('time');
+		var aImg=oUl.getElementsByTagName('img');
+		function clock(){
+			var oDate=new Date();
+			var h=oDate.getHours();
+			var m=oDate.getMinutes();
+			var s=oDate.getSeconds();
+			var str=toDouble(h)+toDouble(m)+toDouble(s);
+			for(var i=0;i<aImg.length;i++){
+				aImg[i].src='number/'+str.charAt(i)+'.png'
+			}
+		};
+		clock();
+		setInterval(clock,1000)
+	}
+	</script>
+</head>
+<body>
+	
+	<figure>
+		<img src="number/2016.png" alt="">
+	</figure>
+	<ul id="time">
+		<li><img src="number/0.png" alt=""></li>
+		<li><img src="number/0.png" alt=""></li>
+		<li class="kong1">:</li> 
+		<li><img src="number/0.png" alt=""></li>
+		<li><img src="number/0.png" alt=""></li>
+		<li class="kong2">:</li> 
+		<li><img src="number/0.png" alt=""></li>
+		<li><img src="number/0.png" alt=""></li>
+	</ul>
+</body>
+</html>

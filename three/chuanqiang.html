@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<title>我会穿墙术!神仙挡不住！</title>
+<style>
+body{height: 100%;width: 100%; background: url(../images/sea.jpg); background-size: 100% auto;}
+ul{ width:190px; height:190px; position:relative; overflow:hidden; float:left; transform:skew(-20deg); margin-top: 200px; margin-left: 70px; border: 1px solid #000}
+ul:nth-child(1){background:url(../images/fish2.png);}
+ul:nth-child(2){background:url(../images/fish3.png);}
+ul:nth-child(3){background:url(../images/fish4.png);}
+ul:nth-child(4){background:url(../images/fish5.png);}
+ul li{ position:absolute; left:190px; top:0; width:190px; height:190px; background:url(../images/fish1.png) no-repeat center;background-size: 100% auto;  }
+</style>
+<script src="../js/move.js"></script>
+<script>
+function getDir(obj,ev){
+	var x=obj.offsetLeft+obj.offsetWidth/2-ev.clientX;
+	var y=obj.offsetTop+obj.offsetHeight/2-ev.clientY;
+	
+	//Math.atan2(y,x) 						PI
+	//Math.atan2(y,x)*180					0-600多
+	//Math.atan2(y,x)*180/Math.PI 			0-正负180
+	//Math.atan2(y,x)*180/Math.PI+180		0-360
+	//(Math.atan2(y,x)*180/Math.PI+180)/90	0.xxx-4.xx
+	//Math.round((Math.atan2(y,x)*180/Math.PI+180)/90)
+											//0-4
+	//Math.round((Math.atan2(y,x)*180/Math.PI+180)/90)%4
+											//0-3
+	return Math.round((Math.atan2(y,x)*180/Math.PI+180)/90)%4;
+}
+function through(oUl){
+	var oLi=oUl.children[0];
+	
+	oUl.onmouseenter=function (ev){
+		var oEvent=ev||event;
+		var dir=getDir(this,oEvent);
+		
+		switch(dir){
+			case 0:
+				oLi.style.left='200px';
+				oLi.style.top=0;				
+				break;
+			case 1:
+				oLi.style.left=0;
+				oLi.style.top='200px';				
+				break;
+			case 2:
+				oLi.style.left='-200px';
+				oLi.style.top=0;				
+				break;
+			case 3:
+				oLi.style.left=0;
+				oLi.style.top='-200px';				
+				break;
+		}
+		move(oLi,{left:0,top:0});
+	};
+	
+	oUl.onmouseleave=function (ev){
+		var oEvent=ev||event;
+		var dir=getDir(this,oEvent);
+		
+		switch(dir){
+			case 0:
+				move(oLi,{left:200,top:0});				
+				break;
+			case 1:
+				move(oLi,{left:0,top:200});					
+				break;
+			case 2:
+				move(oLi,{left:-200,top:0});					
+				break;
+			case 3:
+				move(oLi,{left:0,top:-200});				
+				break;
+		}
+	};
+}
+window.onload=function (){
+	var aUl=document.getElementsByTagName('ul');
+	
+	for(var i=0; i<aUl.length; i++){
+		through(aUl[i]);
+	}
+};
+</script>
+</head>
+<body>
+	<ul>
+    	<li></li>
+    </ul>
+	<ul>
+    	<li></li>
+    </ul>
+	<ul>
+    	<li></li>
+    </ul>
+    <ul>
+    	<li></li>
+    </ul>
+</body>
+</html>

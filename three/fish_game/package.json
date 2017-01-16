@@ -1,0 +1,23 @@
+{
+  "name": "fish_game",
+  "version": "0.0.1",
+  "description": "play and test",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/github.com/leolau2012.git"
+  },
+  "author": "leolau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/github.com/leolau2012/issues"
+  },
+  "homepage": "https://github.com/github.com/leolau2012#readme",
+  "devDependencies": {
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^2.0.0"
+  }
+}

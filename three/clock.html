@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>超酷时钟</title>
+<style>
+body{background: url(img/clock.jpg) no-repeat;}
+	*{ padding:0; margin:0;}
+	.clock{ width:300px; height:300px; background:url(img/pan.png); background-size:contain; margin:100px auto; position:relative;}
+	.clock i{ position:absolute; top:0; left:0;  background-repeat:no-repeat; background-size:contain; transform-origin:center bottom;}
+	.clock .hour{ width:13px; height:104px; background-image:url(img/hour.png); left:50%; top:50%; margin-left:-7px; margin-top:-104px;}
+	.clock .min{ width:12px; height:136px; background-image:url(img/min.png); left:50%; top:50%; margin-left:-6px; margin-top:-136px;}
+	.clock .sec{ width:6px; height:160px; background-image:url(img/sec.png); left:50%; top:50%; margin-left:-3px; margin-top:-140px; transform-origin:center 140px;}
+	.clock .dian{ width:12px; height:12px; background-image:url(img/dian.png); top:50%; left:50%; margin-left:-6px; margin-top:-6px;}
+</style>
+<script>
+	window.onload=function(){
+		
+		var oIh=document.querySelector('.hour');
+		var oIm=document.querySelector('.min');
+		var oIs=document.querySelector('.sec');
+		clock();
+		setInterval(clock,30);
+		function clock(){
+			var oDate=new Date();
+			var oH=oDate.getHours();
+			var oM=oDate.getMinutes();
+			var oS=oDate.getSeconds();
+			var oMs=oDate.getMilliseconds();
+	
+			var hD=(oH%12+oM/60)*360/12;
+			var mD=(oM+oS/60)*360/60;
+			var sD=(oS+oMs/1000)*360/60;
+			
+			oIh.style.transform='rotate('+hD+'deg)';
+			oIm.style.transform='rotate('+mD+'deg)';
+			oIs.style.transform='rotate('+sD+'deg)';	
+		}
+			
+	};
+</script>
+</head>
+
+<body>
+	<div class="clock">
+    	<i class="hour"></i>
+        <i class="min"></i>
+        <i class="sec"></i>
+        <i class="dian"></i>
+    </div>
+</body>
+</html>
+
+
+
+
+
+

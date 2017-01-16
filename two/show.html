@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<style>
+	html{width: 100%;height: 100%;}
+	body{width: 100%;height: 100%;background: url(../images/bjt.jpg);}
+	#home{width:100%;overflow:hidden;position:relative;height:100%}
+	#home>div{width:4px;height:4px;background:#f3ff6e;position:absolute;top:0px;right:0px;border-radius:100%; box-shadow: 1px 1px 10px #fff}
+	#home>div>div{width:3px;height:3px;background:#ccc;position:absolute;top:-2px;right:-2px;}
+	#home>div>div>div{width:2px;height:2px;background:#ccc;position:absolute;top:-2px;right:-2px;}
+	#home>div>div>div div{width:1px;height:1px;background:#ccc;position:absolute;top:-1px;right:-1px;}
+
+	ul{ width:133px; height:200px; margin:100px auto; -webkit-transform-style:preserve-3d; -webkit-transform:perspective(800px) rotateX(-20deg); position:relative;}
+	li{ width:100%; height:100%; position:absolute; border-radius:10px; -webkit-box-shadow:0 0 10px #FFF,0 0 20px #FFF,0 0 30px #FFF; }
+	li i{ width:100%; height:100%; position:absolute; top:200px; left:0; transform:scale(1,-1); -webkit-mask:linear-gradient(rgba(0,0,0,0) 50%,rgba(0,0,0,0.5));}
+
+
+	</style>
+	<script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+	<script>
+		//流星
+		$(function(){
+	var Timerr;
+		function aa(){
+			for(var i=0;i<4;i++){
+			var m=parseInt(Math.random()*700+100);
+			var j2=parseInt(Math.random()*300+1200);
+			var j=parseInt(Math.random()*1600+000);
+			var j1=parseInt(Math.random()*300+300);
+			var n=parseInt(Math.random()*10+(-10));
+			$('#home').prepend('<div><div><div><div><div></div></div></div></div></div>')
+			$('#home').children('div').eq(0).css({'left':j,'top':n})
+			$('#home').children('div').eq(0).animate({'left':j-j1,'top':$(window).height()+20},j2)
+			
+			}
+			}
+			aa();
+			setInterval(function(){
+				aa();
+				},300)
+				setInterval(function(){
+					for(var jj=0;jj<$('#home>div').size()/4;jj++){
+					$('#home>div').eq($('#home>div').size()-jj).remove();
+					}
+					
+					},1000)
+		
+	})
+	</script>
+	<script>
+	//图片环绕
+	window.onload=function(){
+		var oUl=document.querySelector('ul');
+		
+		var N=10;
+		for(var i=0;i<N;i++){
+			var oLi=document.createElement('li');
+			oLi.style.backgroundImage='url(../images/show/'+(i+1)+'.jpg)';
+			
+			oUl.appendChild(oLi);
+			
+		}
+		
+		var aLi=oUl.children;
+		setTimeout(function(){
+			for(var i=0; i<aLi.length;i++){
+				aLi[i].d=360/N*i;
+				aLi[i].style.transition='1s '+(aLi.length-i)*200+'ms';
+				aLi[i].style.transform='rotateY('+aLi[i].d+'deg) translateZ(350px)';
+				var oI=document.createElement('i');
+				oI.style.backgroundImage='url(../images/show/'+(i+1)+'.jpg)';
+				aLi[i].appendChild(oI);
+			
+			}	
+		},0);
+		
+		var rotateY=0;
+		var rotateX=-20;
+		var lastX=0;
+		var lastY=0;
+		var speedX=0;
+		var speedY=0;
+		var timer=null;
+		document.onmousedown=function(ev){
+			var dX=ev.clientX;	
+			var dY=ev.clientY;
+			document.onmousemove=function(ev){
+				var x=ev.clientX-dX;
+				var y=ev.clientY-dY;
+				if(x>0){
+					x=5;	
+				}else{
+					x=-5;	
+				}
+				if(y>0){
+					y=1;	
+				}else{
+					y=-1;
+				}
+				
+				speedX=ev.clientX-lastX;
+				speedY=ev.clientY-lastY;
+				
+				lastX=ev.clientX;
+				lastY=ev.clientY;
+				
+				run(y,x);
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+				clearInterval(timer);
+				timer=setInterval(function(){
+					
+					speedY*=0.9;
+					speedX*=0.9;
+					
+					run(speedY,speedX);
+					
+					if(Math.abs(speedX)<0.5&&Math.abs(speedY)<0.5){
+						clearInterval(timer);
+					}
+					
+				},30);
+					
+			};
+			return false;
+		};
+		
+		function run(y,x){
+			rotateX-=y;
+			oUl.style.transform='perspective(800px) rotateX('+rotateX+'deg)';
+			for(var i=0; i<aLi.length;i++){
+				aLi[i].style.transition='none';
+				aLi[i].d+=x;
+				aLi[i].style.transform='rotateY('+aLi[i].d+'deg) translateZ(350px)';
+				var oPa=Math.abs(180-Math.abs(aLi[i].d)%360)/180;
+				if(oPa<0.5){oPa=0.5}
+				aLi[i].style.opacity=oPa;
+			}
+		}
+		aLi[0].innerHTML='<a href="../home/index.html"><li></li></a>';
+		aLi[1].innerHTML='<a href="../three/clock.html" target="black"><li></li></a>';
+		aLi[2].innerHTML='<a href="../three/pintu.html" target="black"><li></li></a>';
+		aLi[3].innerHTML='<a href="../three/doubleball.html" target="black"><li></li></a>';
+		aLi[4].innerHTML='<a href="../three/time.html" target="black"><li></li></a>';
+		aLi[5].innerHTML='<a href="../three/block.html" target="black"><li></li></a>';
+		aLi[6].innerHTML='<a href="../three/pingbao.html" target="black"><li></li></a>';
+		aLi[7].innerHTML='<a href="../three/fish_game/index.html" target="black"><li></li></a>';
+		aLi[8].innerHTML='<a href="../three/phone.html" target="black"><li></li></a>';
+		aLi[9].innerHTML='<a href="../three/chuanqiang.html" target="black"><li></li></a>';		
+	};
+	</script>
+	<script>
+	
+	</script>
+</head>
+<body>
+	<div id="home" class="div">
+		<ul>
+    	
+    	</ul>
+	</div>
+</body>
+</html>
